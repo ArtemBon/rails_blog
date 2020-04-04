@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :articles do
     resources :comments
   end
+
+  get "search", to: "search#search"
   
   root 'welcome#index'
 end
