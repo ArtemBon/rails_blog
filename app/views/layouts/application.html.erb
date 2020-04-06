@@ -11,6 +11,11 @@
 
   <body>
     <%= render 'search/form' %>
+      <% flash.each do |message_type, message| %>
+          <p>
+            <%= message %>
+          </p>
+      <% end %>
     <%= yield %>
   </body>
 </html>
