@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  resources :users
+
   get "search", to: "search#search"
   
   root 'static_pages#home'

@@ -7,4 +7,24 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
+
+  has_one_attached :avatar
+  validate :acceptable_avatar
+
+  private
+  def acceptable_avatar
+    unless avatar.attached?
+      errors.add(:avatar, "can't be blank")
+      return
+    end
+
+    unless avatar.byte_size <= 1.megabyte
+      errors.add(:avatar, "is too big")
+    end
+
+    acceptable_types = ["image/jpeg", "image/png"]
+    unless acceptable_types.include?(avatar.content_type)
+      errors.add(:avatar, "must be a JPEG or PNG")
+    end
+  end
 end
