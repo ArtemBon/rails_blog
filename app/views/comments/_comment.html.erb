@@ -1,6 +1,6 @@
 <p>
   <strong>Commenter:</strong>
-  <%= comment.commenter %>
+  <%= link_to comment.user.name, user_path(comment.user) %>, <%= image_tag comment.user.display_avatar if comment.user.avatar.attached? %>
 </p>
 
 <p>
@@ -9,5 +9,5 @@
 </p>
 
 <p>
-  <%= link_to 'Destroy Comment', [comment.article, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Destroy Comment', [comment.article, comment], method: :delete, data: { confirm: 'Are you sure?' } if current_user?(comment.article.user) || current_user?(comment.user) %>
 </p>

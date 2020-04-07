@@ -52,6 +52,6 @@ class ArticlesController < ApplicationController
 
   def correct_user
     user = @article.user
-    redirect_to articles_path unless current_user?(@user)
+    redirect_to articles_path unless current_user?(user)
   end
 end

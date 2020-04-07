@@ -12,6 +12,7 @@ class User < ApplicationRecord
   validate :acceptable_avatar
 
   has_many :articles, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   def display_avatar
     avatar.variant(resize_to_limit: [100, 100])
