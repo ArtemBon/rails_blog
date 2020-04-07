@@ -13,6 +13,10 @@ class User < ApplicationRecord
 
   has_many :articles, dependent: :destroy
 
+  def display_avatar
+    avatar.variant(resize_to_limit: [100, 100])
+  end
+
   private
   def acceptable_avatar
     unless avatar.attached?

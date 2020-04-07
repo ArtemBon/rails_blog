@@ -1,1 +1,14 @@
-<%= @user.name %>, <%= @user.email %>, <%= image_tag @user.avatar %>
+<p>
+  <strong>Avatar:</strong>
+  <%= image_tag @user.display_avatar if @user.avatar.attached? %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
