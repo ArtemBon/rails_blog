@@ -5,5 +5,6 @@ class SearchController < ApplicationController
     else
       @articles = Article.search_everywhere params[:term]
     end
+    render 'articles/index'
   end
 end
