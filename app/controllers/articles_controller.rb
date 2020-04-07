@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
+  before_action :logged_in_user, except: [:index, :show]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
     @articles = Article.all
@@ -16,7 +18,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(article_params)
+    @article = current_user.articles.build(article_params)
 
     if @article.save
       redirect_to @article
@@ -46,5 +48,10 @@ class ArticlesController < ApplicationController
 
   def set_article
     @article = Article.find(params[:id])
+  end
+
+  def correct_user
+    user = @article.user
+    redirect_to articles_path unless current_user?(@user)
   end
 end
