@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_one_attached :avatar
   validate :acceptable_avatar
 
+  has_many :articles, dependent: :destroy
+
   private
   def acceptable_avatar
     unless avatar.attached?
