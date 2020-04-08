@@ -13,8 +13,9 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = @article.comments.find(params[:id])
-    @comment.destroy
-    redirect_to article_path(@article)
+    if @comment.destroy
+      redirect_to article_path(@article)
+    end
   end
 
   private
@@ -28,7 +29,6 @@ class CommentsController < ApplicationController
 
   def correct_user
     @comment = @article.comments.find(params[:id])
-    user = @comment.user
-    redirect_to article_path(@article) unless current_user?(user) || current_user?(@article.user)
+    redirect_to article_path(@article) unless current_user?(@comment.user) || current_user?(@article.user)
   end
 end
