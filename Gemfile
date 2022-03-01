@@ -35,7 +35,7 @@ gem 'pg_search'
 gem 'bcrypt'
 
 # Generate variants for images
-gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.12'
 
 gem "aws-sdk-s3", require: false
 
